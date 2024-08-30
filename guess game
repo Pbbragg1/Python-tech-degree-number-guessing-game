@@ -1,0 +1,15 @@
+import random
+prompt the user for their name
+greet them by name
+create a while loop so that as long as they answer yes to the "play again?" question it will continue
+ask the user what difficulty they would like (easy is 1-10, medium is 1-50, and hard is 1-100)
+create if staements for each difficulty
+choose a random number to be the answer
+create while loops for each of them so that it will break when the number is guessed correctly
+have them choose a number
+if they choose not a number or one outside the range have an error message and restart asking them the question
+add a variable that counts how many guesses it took
+create if statements so if it is lower say it is lower and if it is higher say it is higher
+if they guess correctly break the loop and congradulate them
+ask them if they would like to play again
+if they say yes then restart if they say no then tell them bye and end the program
