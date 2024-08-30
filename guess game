@@ -1,8 +1,28 @@
 import random
-prompt the user for their name
-greet them by name
-create a while loop so that as long as they answer yes to the "play again?" question it will continue
-ask the user what difficulty they would like (easy is 1-10, medium is 1-50, and hard is 1-100)
+name = input("Hello, thank you for playing. What is your name? ")
+print(f"Hi {name}, its so nice to meet you. Lets get playing")
+print("In this game you will pick a number and I will tell you wether the number I am thinking of is higher or lower")
+print("easy difficulty is numbers 1-10, medium is 1-50, and hard is 1-100")
+#a variable that says that they want to play
+play = "yes"
+#creates a loop that continues the game until they answer to no playing again
+while play == "yes":
+  #adding a variable which stores what difficulty they choose
+  difficulty = input("What difficulty would you like to play? We have easy, medium, and hard ")
+  if difficulty == "easy":
+    answer = random.randint(1,10)
+    #another while loop that breaks when they guess the number and stays while they have not guessed it
+    while answer != guess:
+      guess = input("choose a number 1-10 ")
+      if guess > answer:
+        print("lower")
+      if guess < answer:
+        print("higher")
+  if difficulty == "medium":
+    
+  if difficulty == "hard":
+    
+  
 create if staements for each difficulty
 choose a random number to be the answer
 create while loops for each of them so that it will break when the number is guessed correctly
