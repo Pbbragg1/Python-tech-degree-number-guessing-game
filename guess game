@@ -7,6 +7,7 @@ print("easy difficulty is numbers 1-10, medium is 1-50, and hard is 1-100")
 play = "yes"
 #creates a loop that continues the game until they answer to no playing again
 while play == "yes":
+  tries = 0
   #adding a variable which stores what difficulty they choose
   difficulty = input("What difficulty would you like to play? We have easy, medium, and hard ")
   if difficulty == "easy":
@@ -18,6 +19,7 @@ while play == "yes":
         print("lower")
       if guess < answer:
         print("higher")
+      tries += 1
   if difficulty == "medium":
     answer = random.randint(1,50)
     while answer != guess:
@@ -26,16 +28,16 @@ while play == "yes":
           print("lower")
         if guess < answer:
           print("higher")
+        tries += 1
   if difficulty == "hard":
-    
-  
-create if staements for each difficulty
-choose a random number to be the answer
-create while loops for each of them so that it will break when the number is guessed correctly
-have them choose a number
+     answer = random.randint(1,100)
+    while answer != guess:
+        guess = input("choose a number 1-100 ")
+        if guess > answer:
+          print("lower")
+        if guess < answer:
+          print("higher")
+    tries += 1
+print("Okay, I hope you have a great day, play again soon!")
+play = input(f"Congradulations {name}! it took you {tries} tries to guess the number. Would you like to play agian")
 if they choose not a number or one outside the range have an error message and restart asking them the question
-add a variable that counts how many guesses it took
-create if statements so if it is lower say it is lower and if it is higher say it is higher
-if they guess correctly break the loop and congradulate them
-ask them if they would like to play again
-if they say yes then restart if they say no then tell them bye and end the program
