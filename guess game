@@ -19,7 +19,13 @@ while play == "yes":
       if guess < answer:
         print("higher")
   if difficulty == "medium":
-    
+    answer = random.randint(1,50)
+    while answer != guess:
+        guess = input("choose a number 1-50 ")
+        if guess > answer:
+          print("lower")
+        if guess < answer:
+          print("higher")
   if difficulty == "hard":
     
   
