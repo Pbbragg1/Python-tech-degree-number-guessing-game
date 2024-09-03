@@ -23,12 +23,12 @@ while play == "yes":
   if difficulty == "medium":
     answer = random.randint(1,50)
     while answer != guess:
-        guess = input("choose a number 1-50 ")
-        if guess > answer:
-          print("lower")
-        if guess < answer:
-          print("higher")
-        tries += 1
+        guess = input("choose a number 1-50")
+          if guess > answer:
+            print("lower")
+          if guess < answer:
+            print("higher")
+          tries += 1
   if difficulty == "hard":
      answer = random.randint(1,100)
     while answer != guess:
@@ -40,4 +40,4 @@ while play == "yes":
     tries += 1
 print("Okay, I hope you have a great day, play again soon!")
 play = input(f"Congradulations {name}! it took you {tries} tries to guess the number. Would you like to play agian")
-if they choose not a number or one outside the range have an error message and restart asking them the question
+#if they choose not a number or one outside the range have an error message and restart asking them the question
