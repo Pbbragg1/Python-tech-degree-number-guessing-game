@@ -3,42 +3,44 @@ name = input("Hello, thank you for playing. What is your name? ")
 print(f"Hi {name}, its so nice to meet you. Lets get playing")
 print("In this game you will pick a number and I will tell you wether the number I am thinking of is higher or lower")
 print("easy difficulty is numbers 1-10, medium is 1-50, and hard is 1-100")
-#a variable that says that they want to play
 play = "yes"
 guess = 0
-#creates a loop that continues the game until they answer to no playing again
 while play == "yes":
   tries = 0
-  #adding a variable which stores what difficulty they choose
-  difficulty = input("What difficulty would you like to play? We have easy, medium, and hard ")
-  if difficulty == "easy":
-    answer = random.randint(1,10)
-    #another while loop that breaks when they guess the number and stays while they have not guessed it
-    while answer != guess:
-      guess = input("choose a number 1-10 ")
-      if guess > answer:
-        print("lower")
-      if guess < answer:
-        print("higher")
-      tries += 1
-  if difficulty == "medium":
-    answer = random.randint(1,50)
-    while answer != guess:
-        guess = input("choose a number 1-50")
-        if guess > answer:
-            print("lower")
-        if guess < answer:
-            print("higher")
-        tries += 1
-  if difficulty == "hard":
-    answer = random.randint(1,100)
-    while answer != guess:
-        guess = input("choose a number 1-100 ")
+  try:
+    difficulty = input("What difficulty would you like to play? We have easy, medium, and hard ")
+    if difficulty == "easy":
+      answer = random.randint(1,10)
+      while answer != guess:
+        guess = int(input("choose a number 1-10 "))
         if guess > answer:
           print("lower")
         if guess < answer:
           print("higher")
         tries += 1
+    elif difficulty == "medium":
+      answer = random.randint(1,50)
+      while answer != guess:
+          guess = int(input("choose a number 1-50 "))
+          if guess > answer:
+              print("lower")
+          if guess < answer:
+              print("higher")
+          tries += 1
+    elif difficulty == "hard":
+      answer = random.randint(1,100)
+      while answer != guess:
+          guess = int(input("choose a number 1-100 "))
+          if guess > answer:
+            print("lower")
+          if guess < answer:
+            print("higher")
+          tries += 1
+    else:
+      raise ValueError
+  except ValueError:
+    print("Please input a valid difficulty")
+    continue
+  print(f"Congradulations {name} it took you {tries} tries to guess correctly")
+  play = input("Would you like to play again? ")
 print("Okay, I hope you have a great day, play again soon!")
-play = input(f"Congradulations {name}! it took you {tries} tries to guess the number. Would you like to play agian")
-
