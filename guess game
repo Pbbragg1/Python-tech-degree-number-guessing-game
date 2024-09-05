@@ -3,6 +3,7 @@ name = input("Hello, thank you for playing. What is your name? ")
 print(f"Hi {name}, its so nice to meet you. Lets get playing")
 print("In this game you will pick a number and I will tell you wether the number I am thinking of is higher or lower")
 print("easy difficulty is numbers 1-10, medium is 1-50, and hard is 1-100")
+print("if you choose something that is not an integer you will be taken back to choosing a difficulty")
 play = "yes"
 guess = 0
 while play == "yes":
@@ -13,28 +14,46 @@ while play == "yes":
       answer = random.randint(1,10)
       while answer != guess:
         guess = int(input("choose a number 1-10 "))
-        if guess > answer:
-          print("lower")
-        if guess < answer:
-          print("higher")
+        try:
+            if guess > 10 or guess < 1:
+                raise ValueError
+            elif guess > answer:
+              print("lower")
+            elif guess < answer:
+              print("higher")
+            else:
+                pass
+        except ValueError:
+            print("please input an integer within the given range")
+            continue
         tries += 1
     elif difficulty == "medium":
       answer = random.randint(1,50)
       while answer != guess:
           guess = int(input("choose a number 1-50 "))
-          if guess > answer:
-              print("lower")
-          if guess < answer:
-              print("higher")
+          try:
+              if guess > 50 or guess < 1:
+                  raise ValueError
+              elif guess > answer:
+                      print("lower")
+              elif guess < answer:
+                  print("higher")
+          except ValueError:
+              print("please choose an integer within the given range")
           tries += 1
     elif difficulty == "hard":
       answer = random.randint(1,100)
       while answer != guess:
           guess = int(input("choose a number 1-100 "))
-          if guess > answer:
-            print("lower")
-          if guess < answer:
-            print("higher")
+          try:
+              if guess > 100 or guess < 1:
+                  raise ValueError
+              elif guess > answer:
+                  print("lower")
+              elif guess < answer:
+                  print("higher")
+          except ValueError:
+              print("please input an integer within the given range")
           tries += 1
     else:
       raise ValueError
@@ -42,5 +61,18 @@ while play == "yes":
     print("Please input a valid difficulty")
     continue
   print(f"Congradulations {name} it took you {tries} tries to guess correctly")
-  play = input("Would you like to play again? ")
+  while play != "yes" or "no":
+    try:
+      play = input("Would you like to play again? ")
+      if play == "yes":
+          break
+      elif play == "no":
+          break
+      elif play != "yes" or "no":
+        raise ValueError
+    except ValueError:
+      print("please input yes or no")
+      continue
+  if play == "no":
+      break
 print("Okay, I hope you have a great day, play again soon!")
