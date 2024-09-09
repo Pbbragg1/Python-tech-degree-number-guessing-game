@@ -1,69 +1,155 @@
+#importing random so it can be used later on
 import random
+#asking for there name to greet them and explaing the rules of the game
 name = input("Hello, thank you for playing. What is your name? ")
 print(f"Hi {name}, its so nice to meet you. Lets get playing")
 print("In this game you will pick a number and I will tell you wether the number I am thinking of is higher or lower")
 print("easy difficulty is numbers 1-10, medium is 1-50, and hard is 1-100")
 print("if you choose something that is not an integer you will be taken back to choosing a difficulty")
+#defining some variables so they can be used later
+#this one says that play continues
 play = "yes"
+#sets the guess count to 0 so it does not start from a random number when counting the players guesses
 guess = 0
+#this sets the rocerds to an impossibly high number so that no matter what they get it will set their record to the nuumber they get
+easy_record = 9999
+medium_record = 9999
+hard_record = 9999
+easy_tries = 10000
+medium_tries = 10000
+hard_tries = 10000
+#this starts the code and says that if the play variable stays as yes then you keep playing the game, the variable is set to no when asked the question (do you want to play again) which ends the loop
 while play == "yes":
+  #sets the number of tries to zero so that when they guess it goes up by one each time
   tries = 0
+  #this try block tries asking the difficulty and if they give something that is not one of the options then it raises an error that makes them try again
   try:
     difficulty = input("What difficulty would you like to play? We have easy, medium, and hard ")
+    #this block activates if they choose easy mode
     if difficulty == "easy":
+      #sets the number of tries to 0 so that if they try again it doesn't still have the number stored from last time they played
+      easy_tries = 0
+      #picks a random number 1 through 10 to be the answer
       answer = random.randint(1,10)
+      #creates a loop that keeps going until they guess the correct answer
       while answer != guess:
-        guess = int(input("choose a number 1-10 "))
-        try:
+          #opts the user to input a guess
+          guess = int(input("choose a number 1-10 "))
+          #this try blocks checks to see if the number is within the correct range and if not then it will raise and error and make the user try again
+          try:
             if guess > 10 or guess < 1:
-                raise ValueError
+              raise ValueError
             elif guess > answer:
               print("lower")
             elif guess < answer:
               print("higher")
             else:
-                pass
-        except ValueError:
-            print("please input an integer within the given range")
+              pass
+          except ValueError:
+            print("please input a number within the given range")
             continue
-        tries += 1
+          #ups the number of tries each time the user guesses so it can display at the end
+          easy_tries += 1
+          #turns the number of tries it took into one variable for all of them so it can display it no matter which difficulty you pick
+          tries = easy_tries
+    #activates if the user chooses medium difficulty
     elif difficulty == "medium":
+      #sets the number of tries to 0 so that if they try again it doesn't still have the number stored from last time they played
+      medium_tries = 0
+      #chooses a random number 1 through 50 to be the answer
       answer = random.randint(1,50)
+      #creates a while loop to contiue until they guess the correct answer
       while answer != guess:
+          #prompts the user for a guess
           guess = int(input("choose a number 1-50 "))
+          #checks to see if the guess is within the correct range and if it is not then it will make the user try again
           try:
-              if guess > 50 or guess < 1:
-                  raise ValueError
-              elif guess > answer:
-                      print("lower")
-              elif guess < answer:
-                  print("higher")
+            if guess > 50 or guess < 1:
+               raise ValueError
+            elif guess > answer:
+               print("lower")
+            elif guess < answer:
+               print("higher")
           except ValueError:
-              print("please choose an integer within the given range")
-          tries += 1
+              print("please choose a number within the given range")
+          #ups the number of tries to that it can show how many it took at the end
+          medium_tries += 1
+          #turns the number of tries it took into one variable for all of them so it can display it no matter which difficulty you pick
+          tries = medium_tries
+    #only activates if hard difficulty is chosen
     elif difficulty == "hard":
+      #sets the number of tries to 0 so that if they try again it doesn't still have the number stored from last time they played
+      hard_tries = 0
+      #sets the answer to a random number 1 through 100
       answer = random.randint(1,100)
+      #creates a while loop that continues until the user guesses correctly
       while answer != guess:
+          #creates a variable that stores what the number is they chose
           guess = int(input("choose a number 1-100 "))
+          #checks to see if the number is within the correct range and if not then an error message is raised and they must try again
           try:
-              if guess > 100 or guess < 1:
-                  raise ValueError
-              elif guess > answer:
-                  print("lower")
-              elif guess < answer:
-                  print("higher")
+            if guess > 100 or guess < 1:
+               raise ValueError
+            elif guess > answer:
+               print("lower")
+            elif guess < answer:
+               print("higher")
           except ValueError:
-              print("please input an integer within the given range")
-          tries += 1
+              print("please input a number within the given range")
+          #raises the number of guesses by one every time they guess
+          hard_tries += 1
+          #turns the number of tries it took into one variable for all of them so it can display it no matter which difficulty you pick
+          tries = hard_tries
+    #raises an error if they choose anything besides the three options for the difficulty
     else:
       raise ValueError
   except ValueError:
     print("Please input a valid difficulty")
     continue
+ #checks to see if they beat their old record and stores their lowest score in a variable(one for each difficulty so it can display all three)
+  if easy_tries < easy_record:
+     easy_record = easy_tries
+  elif easy_tries > easy_record:
+     pass
+  elif medium_tries < medium_record:
+     medium_record = medium_tries
+  elif medium_tries > medium_record:
+     pass
+  elif hard_tries < hard_record:
+     hard_record = hard_tries
+  elif hard_tries > hard_record:
+     pass
+  else:
+     pass
+  #this checks if the number has stayed the same meaning they have not attempted that diffuclty and temperarily sets it to a string to display that they have not tried
+  if easy_record == 9999:
+     easy_record = "no attempt"
+  if medium_record == 9999:
+     medium_record = "no attempt"
+  if hard_record == 9999:
+     hard_record = "no attempt"
+  #prints out that they won and shows them home many tries it took them to guess correctly
   print(f"Congradulations {name} it took you {tries} tries to guess correctly")
+  #prints out their records and shows "no attempt" if they did not try that difficulty yet
+  print("your records are as follows")
+  print(f"easy: {easy_record}")
+  print(f"medium: {medium_record}")
+  print(f"hard: {hard_record}")
+  #resets the ones that they have not tried back to an impossibly high number so it can repeat again if they decide to play again
+  if easy_record == "no attempt":
+     easy_record = 9999
+  elif medium_record == "no attempt":
+     medium_record = 9999
+  elif hard_record == "no attempt":
+     hard_record = 9999
+  else:
+     pass
+  #makes a try block so that if they imput something that is not a yes or a no then they will be asked again
   while play != "yes" or "no":
     try:
+      #asks the user if they would like to play again
       play = input("Would you like to play again? ")
+      #compares the value that they put in to check if it is a yes or a no and if not raises an error
       if play == "yes":
           break
       elif play == "no":
@@ -73,6 +159,9 @@ while play == "yes":
     except ValueError:
       print("please input yes or no")
       continue
+  #if they choose yes then it breaks the loop and says they are done, if they say yes it will continue the loop and allow the user to play again
   if play == "no":
       break
+#prints only if they are done playing and tells them to have a great day
 print("Okay, I hope you have a great day, play again soon!")
+
